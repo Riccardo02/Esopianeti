@@ -1,5 +1,5 @@
 # Esopianeti
-##Rilevazione esopianeti da file FITS
+## Rilevazione esopianeti da file FITS
 
 [pagina CodeShare](https://codeshare.io/2pVPQE)  
 [file FITS](https://drive.google.com/open?id=191SiAYfwVpRsr0RLqIgSUufB4TTA4DmB)  
