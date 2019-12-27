@@ -3,7 +3,7 @@
 
 from astropy.io import fits
 import matplotlib.pyplot as plt
-indirizzo='/home/riccardo/Desktop/Esopianeti/level_1.fits'
+indirizzo='level_1.fits'
 hdu=fits.open(indirizzo)
 data=hdu[0].data
 ima=data[6,:,:]
