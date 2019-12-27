@@ -1,28 +1,4 @@
-from astropy.io import fits
-import matplotlib.pyplot as plt
-hdu=fits.open("level_1.fits")
-data=hdu[0].data
-ima=data[0,:,:]
-plt.imshow(-ima,cmap='ocean')
-
-
-
-
-
-from mpl_toolkits import mplot3d
-import numpy as np
-gridsize=128
-fig = plt.figure()
-ax = plt.axes(projection='3d')
-x, y = np.meshgrid(range(gridsize), range(gridsize))
-ax.plot_surface(x,y,ima,cmap='viridis', edgecolor='none')
-ax.set_title('Surface plot')
-plt.show()
-
-
-
-
-def calcola_luminosita_stella(dati,riga,colonna,raggio):
+def calcola_luminosita_stella(dati,riga,colonna,raggio):#riga e colonna del centro della stella
 
 	riga_partenza=riga-raggio
 	colonna_partenza=colonna-raggio
@@ -30,14 +6,14 @@ def calcola_luminosita_stella(dati,riga,colonna,raggio):
 	luminosita=0
 	luminosita_tot=[]
 	
-	for k in range(1000):
-		for i in range(raggio*2+1):
-			for j in range(raggio*2+1):
+	for k in range(1000):#for per ogni foglio di dati
+		for i in range(raggio*2+1):#for per le righe
+			for j in range(raggio*2+1):#for per le colonne
 	
-				luminosita+=dati[k][riga_partenza+i][colonna_partenza+j]
+				luminosita+=dati[k][riga_partenza+i][colonna_partenza+j]#somma tutte le luminosità
 		
-		luminosita_tot.append(luminosita)
-		luminosita=0
+		luminosita_tot.append(luminosita)#salva la luminosità totale di 1 foglio in un array
+		luminosita=0#si azzera per ricominciare un nuovo foglio
 	
 	return luminosita_tot
 	
@@ -46,4 +22,7 @@ def calcola_luminosita_stella(dati,riga,colonna,raggio):
 
 stella_1=calcola_luminosita_stella(data,100,40,5)
 print(stella_1)
+
+
+
 
