@@ -10,4 +10,4 @@ Requirements:
 	python3 libraries:
 		astropy
 		matplotlib
-		numpy
+		numpy 
