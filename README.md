@@ -9,6 +9,6 @@ python3
 ffmpeg
 python3 libraries:
 
--astropy \n
--matplotlib \n
+-astropy
+-matplotlib
 -numpy
