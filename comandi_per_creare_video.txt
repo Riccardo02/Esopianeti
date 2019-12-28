@@ -1,0 +1,2 @@
+ffmpeg -f image2 -i /tmp/img%03d.png diff.mpg
+ffmpeg -framerate 20 -f image2 -i /tmp/img%03d.png diff.mpg
