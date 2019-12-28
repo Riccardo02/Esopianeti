@@ -7,6 +7,7 @@
 Requirements:  
 - python3  
 - ffmpeg  
+- imagemagick
 - python3 libraries:  
 	- astropy  
 	- matplotlib  
