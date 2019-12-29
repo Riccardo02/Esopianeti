@@ -1,3 +1,4 @@
 {
-        "contatore": 1
+        "contatore": 1,
+        "da_solo": "False"
 }

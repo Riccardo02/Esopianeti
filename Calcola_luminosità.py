@@ -77,6 +77,7 @@ salva_json(stelle_tot,"Dati/File"+str(contatore["contatore"])+".json")
 
 
 contatore["contatore"]+=1
+contatore["da_solo"]="True"
 
 salva_json(contatore,"Contatore/Contatore.json")
 

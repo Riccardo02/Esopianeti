@@ -7,6 +7,10 @@ def prendi_json(path):
 	dati=json.load(open(path,"r"))
 	return dati
 
+def salva_json(dati,path):
+	with open(path,"w") as outfile:
+		json.dump(dati,outfile,indent=8)
+	return
 
 def creazione_grafico(stelle):
 
@@ -26,13 +30,14 @@ def creazione_grafico(stelle):
 	
 
 contatore=prendi_json("Contatore/Contatore.json")
+if(contatore["da_solo"]=="True"):
 
-if(contatore["contatore"]==2):
-
-	stelle_tot=prendi_json("Dati/File1.json")
+	stelle_tot=prendi_json("Dati/File"+str(contatore["contatore"])+".json")
+	contatore["da_solo"]="False"
 else:
 	stelle_tot=prendi_json("Dati/"+str(input("Quale file vuoi aprire?"))+".json")
-	
+
+salva_json(contatore,"Contatore/Contatore.json")
 creazione_grafico(stelle_tot)
 
 
