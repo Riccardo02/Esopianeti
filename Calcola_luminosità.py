@@ -1,10 +1,19 @@
-
-# -*- coding: utf-8 -*-
-
+#coding: utf-8
 from astropy.io import fits
-import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
-import numpy as np
+import json
+from datetime import datetime
+import os
+
+def prendi_json(path):
+	dati=json.load(open(path,"r"))
+	return dati
+	
+	
+def salva_json(dati,path):
+	with open(path,"w") as outfile:
+		json.dump(dati,outfile,indent=8)
+	return
+
 
 def calcola_luminosita_stella(dati,colonna,riga,raggio):#riga e colonna del centro della stella
 
@@ -42,20 +51,7 @@ def calcola_luminosita_stella(dati,colonna,riga,raggio):#riga e colonna del cent
 	return dati_tot
 
 
-def creazione_grafico(stelle):
-	
-	n_stelle=len(stelle)
-	plt.title('stelle')
-	plt.xlim(0,50000)
-	plt.ylim(0,50000)
-	
-	colori=['r','g','b','c','m','y','k']
-	
-	for i in range(n_stelle):
-		plt.plot(stelle["stella_"+str(i+1)]["tempo_tot"],stelle["stella_"+str(i+1)]["luminosita_tot"],colori[i])
-	plt.ylabel('luminosità')
-	plt.xlabel('tempo(s)')
-	plt.show()
+
 
 
 
@@ -66,16 +62,23 @@ hdu=fits.open(indirizzo)
 data=hdu[0].data
 stelle_tot={}
 
-
+video=str(input("Nome Video -> "))
+os.system("vlc Video/" + video + ".mpg &")
+os.system("vlc Video/" + video + "diff.mpg &")
 
 for i in range(int(input("Quante stelle? "))):
 	stelle_tot["stella_"+str(i+1)]=calcola_luminosita_stella(data,int(input("X stella ")),int(input("Y stella ")),int(input("raggio ")))
 	print("Fatto!\nProssima stella\n")
 
+contatore=prendi_json("Contatore/Contatore.json")
 
 
+salva_json(stelle_tot,"Dati/File"+str(contatore["contatore"])+".json")
 
-creazione_grafico(stelle_tot)
 
+contatore["contatore"]+=1
 
+salva_json(contatore,"Contatore/Contatore.json")
+
+os.system("python Grafico.py &")
 
